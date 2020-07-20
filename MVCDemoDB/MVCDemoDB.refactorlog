@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="326b01cf-2069-468f-969a-0c57e0f12cad" ChangeDateTime="07/20/2020 19:38:09">
+    <Property Name="ElementName" Value="[dbo].[CypherSymbols].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CypherSymbols]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="oldSymbol" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f3028e25-7bb2-466b-a1c2-735ac6c07dbf" ChangeDateTime="07/20/2020 19:52:30">
+    <Property Name="ElementName" Value="[dbo].[CypherSymbols].[oldSymbol]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CypherSymbols]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c21e03b5-67ab-472d-9393-0df6b64b7f54" ChangeDateTime="07/20/2020 19:52:39">
+    <Property Name="ElementName" Value="[dbo].[CypherSymbols].[newSymbol]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CypherSymbols]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="oldSymbol" />
+  </Operation>
+</Operations>
