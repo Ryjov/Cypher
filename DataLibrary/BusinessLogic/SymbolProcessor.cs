@@ -23,6 +23,12 @@ namespace DataLibrary.BusinessLogic
                             values (@oldSymbol, @newSymbol);";
             return SqlDataAccess.SaveData(sql, data);
         }
+
+        public static SymbolModel GetRow(char oldSymbol)
+        {
+            string sql = $@"select * from dbo.CypherSymbols where oldSymbol ='{oldSymbol}'";
+            return SqlDataAccess.LoadData<SymbolModel>(sql)[0];
+        }
         
         public static List<SymbolModel> LoadSymbols()
         {

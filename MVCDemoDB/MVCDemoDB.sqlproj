@@ -69,5 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Publish\MVCDemoDB.publish.xml" />
+    <None Include="Publish\MessagesDB.publish.xml" />
   </ItemGroup>
 </Project>

@@ -21,4 +21,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="oldSymbol" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="1a022485-3d30-4c9f-84c8-476d983ab971" ChangeDateTime="07/22/2020 02:53:34">
+    <Property Name="ElementName" Value="[dbo].[EncodedMessages].[EncodedMessage]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[EncodedMessages]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="EncryptedMessage" />
+  </Operation>
 </Operations>

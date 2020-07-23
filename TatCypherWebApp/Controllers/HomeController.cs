@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TatCypherWebApp.Models;
-using static DataLibrary.BusinessLogic.SymbolProcessor;
+using DataLibrary.BusinessLogic;
 
 namespace TatCypherWebApp.Controllers
 {
@@ -15,25 +16,51 @@ namespace TatCypherWebApp.Controllers
             return View();
         }
 
-        public ActionResult About()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EncryptMessage(MessageModel model)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            if (ModelState.IsValid)
+            {
+                string Message = model.OriginalMessage;
+                int i = 0;
+                foreach (char c in Message)
+                {
+                    var sModel = SymbolProcessor.GetRow(c);
+                    Message = $"{Message.Substring(0,i)}{sModel.newSymbol}{Message.Substring(i+1)}";
+                    i++;
+                }
+                MessageProcessor.CreateMessage(model.OriginalMessage, Message);
+                return RedirectToAction("Index");
+            }
+            return View("Index");
         }
 
-        public ActionResult Contact()
+        public ActionResult ViewMessages()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Список полученных зашифрованных сообщений";
 
-            return View();
+            var data = MessageProcessor.LoadMessages();
+            List<MessageModel> messages = new List<MessageModel>();
+
+            foreach (var row in data)
+            {
+                messages.Add(new MessageModel
+                {
+                    ID = row.ID,
+                    OriginalMessage = row.OriginalMessage,
+                    EncryptedMessage = row.EncryptedMessage
+                });
+            }
+
+            return View(messages);
         }
 
         public ActionResult ViewSymbols()
         {
             ViewBag.Message = "Список шифрованных символов";
 
-            var data = LoadSymbols();
+            var data = SymbolProcessor.LoadSymbols();
             List<SymbolModel> symbols = new List<SymbolModel>();
 
             foreach (var row in data)
@@ -61,7 +88,7 @@ namespace TatCypherWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                CreateSymbol(sModel.oldSymbol, sModel.newSymbol);
+                SymbolProcessor.CreateSymbol(sModel.oldSymbol, sModel.newSymbol);
                 return RedirectToAction("Index");
             }
 
